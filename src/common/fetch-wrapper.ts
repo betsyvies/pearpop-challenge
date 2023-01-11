@@ -1,13 +1,18 @@
-export const handleResponse = async (res: any) => {
-  if (res.error) return res.error;
-  const data = await res.json();
-  return JSON.parse(data);
-};
+import { ResponseType } from "../interfaces/response";
 
-export const get = (url: string) => {
+export const get = async <T>(url: string): Promise<T> => {
   const requestOptions = {
     method: 'GET',
     headers: {},
   };
-  return fetch(url, requestOptions).then(handleResponse);
+
+  try {
+    const response = await fetch(url, requestOptions);
+    const data: ResponseType<T> = await response.json();
+    return data.result!;
+  } catch (err) {
+    let message = 'Unknown Error';
+    if (err instanceof Error) message = err.message;
+    throw new Error(message); 
+  }
 };
