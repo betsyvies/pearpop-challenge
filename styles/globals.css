@@ -15,9 +15,34 @@ a {
   text-decoration: none;
 }
 
-main {
+h1 {
+  text-align: center;
+  margin: 1rem;
+  font-weight: bolder;
+}
+p {
+  margin: 1rem 0;
+}
+button {
+  padding: 0.25rem 1rem;
+}
+
+.container-product {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.product {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  width: 20%;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid #BEBEBE;
+}
+.container-image {
+  width: 100%;
+  height: 200px;
+  position: relative;
 }

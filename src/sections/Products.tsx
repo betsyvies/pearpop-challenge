@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { get as getProducts } from '../common/fetch-wrapper';
 import { Product } from '../interfaces/product';
@@ -35,13 +36,27 @@ const Products = () => {
   return (
     <>
       <h1>Products</h1>
-      {
-        products.map((product) => (
-          <div key={product.productId}>
-            <p>{product.productName}</p>
-          </div>
-        ))
-      }
+      <div className='container-product'>
+        {
+          products.map((product) => (
+            <div
+            key={product.productId}
+            className='product'
+            >
+              <div className='container-image'>
+                <Image
+                  src={product.productImage}
+                  alt={product.productName}
+                  layout='fill'
+                  objectFit='cover'
+                />
+              </div>
+              <p>{product.productName}</p>
+              <button>More</button>
+            </div>
+          ))
+        }
+      </div>
     </>
   );
 };
